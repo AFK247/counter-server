@@ -26,13 +26,15 @@ async function run() {
   try {
     const counterCollection = client.db("Counter").collection("CounterValue");
 
+    //GET API
     app.get("/counterApi", async (req, res) => {
       const query = { key: "hello" };
       const countValue = await counterCollection.find(query).toArray();
       res.send(countValue);
     });
 
-    app.put("/updateCounter/:val", async (req, res) => {
+    //UPDATE API
+    app.patch("/updateCounter/:val", async (req, res) => {
       const newVal = req.params.val;
       const query = { key: "hello" };
 
